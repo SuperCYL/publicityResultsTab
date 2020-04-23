@@ -37,9 +37,11 @@ module.exports = Event.extend(function Base(container, config) {
    */
   render: function (data, config) {
     data = this.data(data);
-    console.log(data);
+    
     let that = this;
     var cfg = this.mergeConfig(config);
+    console.log(cfg);
+
     var bg = "http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/456c2d2d61bcfa3bcf8a80ba03a72ff5.png";
     var hover = "http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/4f731bb1dbd15240dc42fcebe5860175.png"
 
@@ -106,10 +108,7 @@ module.exports = Event.extend(function Base(container, config) {
     html+=`</ul></div>` 
 
     //更新图表
-    //this.chart.render(data, cfg);
     this.container.html(html);
-    // this.container.find(".prt ul li").css({
-    // })
 
     $(".account_prt ul li").click(function(){
       console.log($(this))
