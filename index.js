@@ -37,61 +37,73 @@ module.exports = Event.extend(function Base(container, config) {
    */
   render: function (data, config) {
     data = this.data(data);
+    console.log(data);
     let that = this;
     var cfg = this.mergeConfig(config);
     var bg = "http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/456c2d2d61bcfa3bcf8a80ba03a72ff5.png";
     var hover = "http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/4f731bb1dbd15240dc42fcebe5860175.png"
-    var html=`
-    <div class="account_prt" style="height:300px;">
-      <ul style="clear:both">
-        <li style="width:282px;height:133px;cursor:pointer;float:left;list-style:none;position:relative;background-image:url('${bg}')">
-          <p style="text-align:center;margin-top:20px;">
-          <img style="width:38px;height:32px;position:absolute;left:70px;top:20px;" src="http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/affaa2bdc2fe61e28f970daac8af6c30.png" />微信</p>
-          <p style="margin-top:38px;text-align:center;">2369</p>
-        </li>
-        <li style="width:282px;height:133px;cursor:pointer;float:left;margin-left:22px;list-style:none;position:relative;background-image:url('${hover}')">
-          <p style="text-align:center;margin-top:20px;">
-          <img style="width:27px;height:31px;position:absolute;left:70px;top:20px;" src="http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/df51dbd3066fb260d32c51f05a9eabcf.png" />抖音</p>
-          <p style="margin-top:38px;text-align:center;">2369</p>
-        </li>
-        <li style="width:282px;height:133px;cursor:pointer;float:left;margin-top:22px;list-style:none;position:relative;background-image:url('${hover}')">
-          <p style="text-align:center;margin-top:20px;">
-          <img style="width:34px;height:30px;position:absolute;left:70px;top:20px;" src="http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/db315c6cf286d36ae182aadaa1d5d240.png" />微博</p>
-          <p style="margin-top:38px;text-align:center;">2369</p>
-        </li>
-        <li style="width:282px;height:133px;cursor:pointer;float:left;margin-top:22px;margin-left:22px;list-style:none;position:relative;background-image:url('${hover}')">
-          <p style="text-align:center;margin-top:20px;">
-          <img style="width:36px;height:24px;position:absolute;left:70px;top:20px;" src="http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/ad1ce4145817072d083b8fcc038cb2c5.png" />头条</p>
-          <p style="margin-top:38px;text-align:center;">2369</p>
-        </li>
-      </ul>
-    </div>
 
-    <div class="user_prt" style="margin-top:22px;height:300px;">
-      <ul style="clear:both">
-        <li style="width:282px;height:133px;cursor:pointer;float:left;list-style:none;position:relative;background-image:url('${bg}')">
-          <p style="text-align:center;margin-top:20px;">
-          <img style="width:38px;height:32px;position:absolute;left:70px;top:20px;" src="http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/affaa2bdc2fe61e28f970daac8af6c30.png" />微信</p>
-          <p style="margin-top:38px;text-align:center;">2369</p>
-        </li>
-        <li style="width:282px;height:133px;cursor:pointer;float:left;margin-left:22px;list-style:none;position:relative;background-image:url('${hover}')">
-          <p style="text-align:center;margin-top:20px;">
-          <img style="width:27px;height:31px;position:absolute;left:70px;top:20px;" src="http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/df51dbd3066fb260d32c51f05a9eabcf.png" />抖音</p>
-          <p style="margin-top:38px;text-align:center;">2369</p>
-        </li>
-        <li style="width:282px;height:133px;cursor:pointer;float:left;margin-top:22px;list-style:none;position:relative;background-image:url('${hover}')">
-          <p style="text-align:center;margin-top:20px;">
-          <img style="width:34px;height:30px;position:absolute;left:70px;top:20px;" src="http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/db315c6cf286d36ae182aadaa1d5d240.png" />微博</p>
-          <p style="margin-top:38px;text-align:center;">2369</p>
-        </li>
-        <li style="width:282px;height:133px;cursor:pointer;float:left;margin-top:22px;margin-left:22px;list-style:none;position:relative;background-image:url('${hover}')">
-          <p style="text-align:center;margin-top:20px;">
-          <img style="width:36px;height:24px;position:absolute;left:70px;top:20px;" src="http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/ad1ce4145817072d083b8fcc038cb2c5.png" />头条</p>
-          <p style="margin-top:38px;text-align:center;">2369</p>
-        </li>
-      </ul>
-    </div>
-    `
+    var html=`<div class="account_prt" style="height:300px;"><ul style="clear:both">`
+        
+
+    for (var i = 0; i < data.length; i++) { 
+      var icon = "";
+      var background = "";
+      if(data[i]["type"] === 1){
+        icon = "http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/affaa2bdc2fe61e28f970daac8af6c30.png"
+        background = bg
+      }
+      else if(data[i]["type"] === 2){
+        icon = "http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/df51dbd3066fb260d32c51f05a9eabcf.png"
+        background = hover
+      }
+      else if(data[i]["type"] === 3){
+        icon = "http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/db315c6cf286d36ae182aadaa1d5d240.png"
+        background = hover
+      }else{
+        icon = "http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/ad1ce4145817072d083b8fcc038cb2c5.png"
+        background = hover
+      }
+
+      html += `<li style="width:282px;height:133px;cursor:pointer;float:left;margin-top:20px;margin-left:20px;list-style:none;position:relative;background-image:url('${background}')">
+        <p style="text-align:center;margin-top:20px;">
+        <img style="width:38px;height:32px;position:absolute;left:70px;top:20px;" src="${icon}" />
+        ${data[i]["typeName"]}</p>
+        <p style="margin-top:38px;text-align:center;">${data[i]["accountCount"]}</p>
+      </li>`
+    }
+    
+    html+=`</ul></div>` 
+
+    html += `<div class="user_prt" style="margin-top:22px;height:300px;">
+    <ul style="clear:both">`
+    for (var i = 0; i < data.length; i++) { 
+      var icon = "";
+      var background = "";
+      if(data[i]["type"] === 1){
+        icon = "http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/affaa2bdc2fe61e28f970daac8af6c30.png"
+        background = bg
+      }
+      else if(data[i]["type"] === 2){
+        icon = "http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/df51dbd3066fb260d32c51f05a9eabcf.png"
+        background = hover
+      }
+      else if(data[i]["type"] === 3){
+        icon = "http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/db315c6cf286d36ae182aadaa1d5d240.png"
+        background = hover
+      }else{
+        icon = "http://datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/ad1ce4145817072d083b8fcc038cb2c5.png"
+        background = hover
+      }
+
+      html += `<li style="width:282px;height:133px;cursor:pointer;float:left;margin-top:20px;margin-left:20px;list-style:none;position:relative;background-image:url('${background}')">
+        <p style="text-align:center;margin-top:20px;">
+        <img style="width:38px;height:32px;position:absolute;left:70px;top:20px;" src="${icon}" />
+        ${data[i]["typeName"]}</p>
+        <p style="margin-top:38px;text-align:center;">${data[i]["fansCount"]}</p>
+      </li>`
+    }
+    html+=`</ul></div>` 
 
     //更新图表
     //this.chart.render(data, cfg);
