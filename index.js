@@ -67,7 +67,7 @@ module.exports = Event.extend(function Base(container, config) {
         background = hover
       }
 
-      html += `<li style="width:282px;height:133px;cursor:pointer;float:left;margin-top:20px;margin-left:20px;list-style:none;position:relative;background-image:url('${background}')">
+      html += `<li type="${data[i]["type"]}" style="width:282px;height:133px;cursor:pointer;float:left;margin-top:20px;margin-left:20px;list-style:none;position:relative;background-image:url('${background}')">
         <p style="text-align:center;margin-top:20px;">
         <img style="width:38px;height:32px;position:absolute;left:70px;top:20px;" src="${icon}" />
         ${data[i]["typeName"]}</p>
@@ -98,7 +98,7 @@ module.exports = Event.extend(function Base(container, config) {
         background = hover
       }
 
-      html += `<li style="width:282px;height:133px;cursor:pointer;float:left;margin-top:20px;margin-left:20px;list-style:none;position:relative;background-image:url('${background}')">
+      html += `<li type="${data[i]["type"]}" style="width:282px;height:133px;cursor:pointer;float:left;margin-top:20px;margin-left:20px;list-style:none;position:relative;background-image:url('${background}')">
         <p style="text-align:center;margin-top:20px;">
         <img style="width:38px;height:32px;position:absolute;left:70px;top:20px;" src="${icon}" />
         ${data[i]["typeName"]}</p>
@@ -111,20 +111,20 @@ module.exports = Event.extend(function Base(container, config) {
     this.container.html(html);
 
     $(".account_prt ul li").click(function(){
-      console.log($(this))
+      
       $(this).css({"background-image":"url('"+bg+"')"});
       $(this).siblings("li").css({"background-image":"url('"+hover+"')"});
 
       var Index = $(this).index();
       $(".user_prt ul li")[Index].style.backgroundImage="url('"+bg+"')";
       $($(".user_prt ul li")[Index]).siblings("li").css({"background-image":"url('"+hover+"')"});
-      console.log(111111111111)
+      console.log($(this)[0]["type"])
       that.emit('click', {id:Index}); 
 
     })
 
     $(".user_prt ul li").click(function(){
-      console.log($(this))
+      
       $(this).css({"background-image":"url('"+bg+"')"});
       $(this).siblings("li").css({"background-image":"url('"+hover+"')"});
 
@@ -132,6 +132,7 @@ module.exports = Event.extend(function Base(container, config) {
       $(".account_prt ul li")[Index].style.backgroundImage="url('"+bg+"')";
       $($(".account_prt ul li")[Index]).siblings("li").css({"background-image":"url('"+hover+"')"});
 
+      console.log($(this)[0]["type"])
       that.emit('click', {id:Index}); 
 
     })
